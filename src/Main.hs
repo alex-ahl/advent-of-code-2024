@@ -1,17 +1,13 @@
 module Main where
 import Text.Read (readMaybe)
 import Data.List (sort)
-import Data.Maybe
+import Data.Maybe ( mapMaybe )
 
 main :: IO ()
-main = do
-        day1::IO() 
+main = do day1 
 
 day1 :: IO ()
-day1 = do
-    content <- readFile "day1.txt"
-    let sortedPairs = sortAndPairSmallest content
-    mapM_ print sortedPairs 
+day1 = do readFile "day1.txt" >>= (print . sum . map findDistanceBetween . sortAndPairSmallest)
 
 parseLine :: String -> Maybe (Integer, Integer) 
 parseLine line =
@@ -20,9 +16,12 @@ parseLine line =
         _ -> Nothing 
 
 sortAndPairSmallest :: String -> [(Integer, Integer)]
-sortAndPairSmallest content = 
-    let pairs = mapMaybe parseLine (lines content)
+sortAndPairSmallest input =
+    let pairs = mapMaybe parseLine (lines input)
         firstColumn = sort (map fst pairs)
         secondColumn = sort (map snd pairs)
-        paired = zip firstColumn secondColumn
-    in paired
+    in zip firstColumn secondColumn
+
+findDistanceBetween :: (Integer, Integer) -> Integer
+findDistanceBetween (x, y) = abs (x - y)
+    
