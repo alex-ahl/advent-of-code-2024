@@ -28,11 +28,6 @@ version:            0.1.0.0
 -- A longer description of the package.
 -- description:
 
--- The license under which the package is released.
-license:            MIT
-
--- The file containing the license text.
-license-file:       LICENSE
 
 -- The package author(s).
 author:             Alexander Åhl
@@ -44,8 +39,6 @@ maintainer:         alexander.ahl@gmail.com
 -- copyright:
 build-type:         Simple
 
--- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
-extra-doc-files:    CHANGELOG.md
 
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
 -- extra-source-files:
@@ -68,6 +61,7 @@ executable advent-of-code2024
 
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.17.2.1
+                    , containers
 
     -- Directories containing source files.
     hs-source-dirs:   src
